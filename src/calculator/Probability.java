@@ -29,7 +29,7 @@ public class Probability {
 	 * @return P(event1 or event2)
 	 */
 	public double or(double event1, double event2) {
-		return event1+event2 - event1and2;
+		return event1+event2 - this.event1and2;
 	}
 	
 	/**
