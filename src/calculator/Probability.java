@@ -10,10 +10,12 @@ public class Probability {
 	private double event2=0;
 	private double event1and2=0;
 	private char or ='+', and ='*';
+	private boolean mutuallyExclusive;
 	
-	public Probability(double event1, double event2) {
+	public Probability(double event1, double event2, boolean mutuallyExclusive) {
 		this.event1 = event1;
 		this.event2 = event2;
+		this.mutuallyExclusive = mutuallyExclusive;
 	}
 	public Probability(double event1, double event2, double event1and2) {
 		this.event1 = event1;
@@ -37,8 +39,9 @@ public class Probability {
 	 * @return P(event1 and event2)
 	 */
 	public double and(double event1, double event2) {
-		return event1*event2;
+		return (this.mutuallyExclusive)? 0:event1*event2;
 	}
+
 	/**
 	 * This method calculates probability of one event happening and another not happening
 	 * @param event
