@@ -2,7 +2,7 @@ package calculator;
 /**
  * This program will perform different probability equations
  * 
- * @Author Adam Cichoski, Bennet Scott, Natalie Hildreth, Joseph Holly
+ * @Author Adam Cichoski, Bennet Scott, Natalie Hildreth, Joseph Holly, Alex Bonaker
  */
 public class ProbabilityCalculator {
 	public static void main(String[] args) {

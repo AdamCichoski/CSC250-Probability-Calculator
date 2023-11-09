@@ -3,7 +3,7 @@ package calculator;
  * This class will hold the methods to determine create a probability question
  * for two possible events and to determine the probability of something happening
  * 
- * @Author Adam Cichoski, Bennet Scott, Natalie Hildreth, Joseph Holly
+ * @Author Adam Cichoski, Bennet Scott, Natalie Hildreth, Joseph Holly, Alex Bonaker
  */
 public class Probability {
 	private double event1=0;
