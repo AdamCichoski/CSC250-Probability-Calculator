@@ -17,6 +17,6 @@ public class ProbabilityCalculator {
 		System.out.printf("%-21s = %5f\n", "P(~event1 or ~event2)", (p.not(event1, event2)));
 		System.out.printf("%-21s = %5f\n", "P(event1 | event2)", (p.given(event1, event2)));
 
-		System.out.println("Moving onto combinatorics!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println("Moving onto combinatorics!");
 	}
 }
