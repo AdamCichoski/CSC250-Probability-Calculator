@@ -63,6 +63,12 @@ public class Probability {
 	public double not(double event1, double event2) {
 		return 1-(event1+event2+event1and2);
 	}
+	/**
+	 * This method calculates the probability of an event given another event
+	 * @param event1
+	 * @param event2
+	 * @return
+	 */
 	public double given(double event1, double event2) {
 		return and(event1, event2) / event2;
 	}
@@ -80,5 +86,4 @@ public class Probability {
 	public void setEvent2(double event2) {
 		this.event1and2=event2;
 	}
-	
 }
