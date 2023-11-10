@@ -6,5 +6,5 @@ package calculator;
  * @Author Adam Cichoski, Natalie Hildreth, Bennet Scott, Joseph Holly, Alex Bonaker
  */
 public class Combination {
-    
+    private double event1;
 }
