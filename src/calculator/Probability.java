@@ -60,7 +60,7 @@ public class Probability {
 	 * This method checks a not on two events; P(~event1 or ~event2)
 	 * @return
 	 */
-	public double not(double event1, double event2) {
+	public double nor(double event1, double event2) {
 		return 1-(event1+event2+event1and2);
 	}
 	/**

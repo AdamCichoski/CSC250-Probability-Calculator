@@ -6,6 +6,9 @@ package calculator;
  */
 public class ProbabilityCalculator {
 	public static void main(String[] args) {
+
+		Program program = new Program();
+		program.start();
 		double event1=0.1;
 		double event2=0.5;
 		Probability p = new Probability(event1,event2);
