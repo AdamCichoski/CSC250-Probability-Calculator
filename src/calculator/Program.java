@@ -89,7 +89,7 @@ public class Program {
                     case "and":
                         boolean x = exclusive;
                         if(exclusive){
-                            System.out.println("P(A and B): 0");
+                            System.out.println("P(A and B): 0%");
                         }
                         else if (event1 == 0.0 || event2 == 0.0) { 
                             System.out.println("Error: Keyword requires two events!!\n"); 
