@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Program {
     public static void start() {
+        boolean exclusive = false;
         Scanner input = new Scanner(System.in);
 
         System.out.println("██████  ██████   ██████  ██████   █████  ██████  ██ ██      ██ ████████ ██    ██");
@@ -22,7 +23,7 @@ public class Program {
 		System.out.println(" ██████ ██   ██ ███████  ██████  ██████  ███████ ██   ██    ██     ██████  ██   ██");
 		System.out.println("\n");
         
-        System.out.println("Enter a probability equation (enter 'help' for formatting):");
+        System.out.println("Enter a probability equation (enter '?' for formatting):");
         while (!input.hasNext("exit")) {
             String probability = input.nextLine();
             // split each word in string so they are seperate elements in a string
@@ -35,20 +36,27 @@ public class Program {
             // check length and each element of array for any invalid inputs
             if (words.length == 1 && words[0].equals("exit")) {
                 keyword = "exit";
-            } else if (words.length == 1 && words[0].equals("help")) {
-                keyword = "help";
+            } else if (words.length == 1 && words[0].equals("?")) {
+                keyword = "?";
                 System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions. Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.\n");
                 
-                System.out.println("Keywords:");
+                System.out.println("Keywords:\nProbability:");
                 System.out.println("and: [A] and [B]");
                 System.out.println("or: [A] or [B]");
                 System.out.println("not: not [A]");
                 System.out.println("nor: [A] nor [B]");
                 System.out.println("notAnd: [A] notAnd [B]");
                 System.out.println("given: [A] given [B]");
-                System.out.println("help: lists all keywords.");
+                System.out.println("setx: sets and/or disables function to mutually exclusive");
+                System.out.println("?: lists all keywords.");
                 System.out.println("exit: exits the program.\n");
-            } else if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].endsWith("%")) {
+            }else if(words.length == 1 && words[0].equals("setx")){
+                keyword = "setx";
+                exclusive = (exclusive)? false : true;
+                String is = (exclusive)? "is exclusive": "is not exclusive";
+                System.out.printf("-->Function %s \n", is);
+            } 
+            else if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].endsWith("%")) {
                 keyword = words[0];
                 // convert strings of events into doubles
                 words[1] = words[1].substring(0, words[1].length() - 1);
@@ -79,7 +87,11 @@ public class Program {
                         }
                         break;
                     case "and":
-                        if (event1 == 0.0 || event2 == 0.0) { 
+                        boolean x = exclusive;
+                        if(exclusive){
+                            System.out.println("P(A and B): 0");
+                        }
+                        else if (event1 == 0.0 || event2 == 0.0) { 
                             System.out.println("Error: Keyword requires two events!!\n"); 
                         } else {
                             System.out.println("P(A and B): " + String.format("%.1f", p.and(event1, event2) * 100) + "%\n");
@@ -111,7 +123,7 @@ public class Program {
                         break;
                 }
             }
-            System.out.println("Enter a probability equation (enter 'help' for formatting):");
+            System.out.println("Enter a probability equation (enter '?' for formatting):");
         }
         
         // close on keyword "exit"

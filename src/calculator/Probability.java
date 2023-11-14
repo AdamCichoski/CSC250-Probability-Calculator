@@ -86,4 +86,21 @@ public class Probability {
 	public void setEvent2(double event2) {
 		this.event1and2=event2;
 	}
+	/**
+	 * Sets the likelyhood of both happening
+	 * @param event1and2 new chances of both events happening
+	 */
+	public void setEvent1and2(double event1and2){
+		if(event1and2<0){
+			throw new IllegalArgumentException("Invalid input for event!");
+		}
+		this.event1and2 = event1and2;
+	}
+	/**
+	 * Gets event1and2
+	 * @return event1and2
+	 */
+	public double getEvent1and2(){
+		return this.event1and2;
+	}
 }
