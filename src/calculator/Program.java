@@ -7,8 +7,7 @@ import java.util.Scanner;
  */
 public class Program {
     public static void start() {
-        Scanner input;
-        input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         System.out.println("██████  ██████   ██████  ██████   █████  ██████  ██ ██      ██ ████████ ██    ██");
 		System.out.println("██   ██ ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██ ██      ██    ██     ██  ██ ");
