@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 /**
  * This class holds the methods to calculate cominatorics using the provided formulas in 
- * the CSC 250 slides
+ * the CSC 250 slides. This class will also include functions for permutations. 
  * 
  * @Author Adam Cichoski, Natalie Hildreth, Bennet Scott, Joseph Holly, Alex Bonaker
  */

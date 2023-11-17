@@ -38,8 +38,8 @@ public class Program {
                 keyword = "exit";
             } else if (words.length == 1 && words[0].equals("?")) {
                 keyword = "?";
-                System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions. Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.\n");
-                
+                System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions. Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.");
+                System.out.println("When performing a combination functio, the percentage symbol is not required.\n");
                 System.out.println("Keywords:\nProbability:");
                 System.out.println("and: [A] and [B]");
                 System.out.println("or: [A] or [B]");
