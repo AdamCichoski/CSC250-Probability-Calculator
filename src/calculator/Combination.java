@@ -1,20 +1,24 @@
 package calculator;
+
+import java.math.BigInteger;
+
 /**
  * This class holds the methods to calculate cominatorics using the provided formulas in 
  * the CSC 250 slides
  * 
  * @Author Adam Cichoski, Natalie Hildreth, Bennet Scott, Joseph Holly, Alex Bonaker
  */
-public class Combination {
-    private int ntotal;
+public class Combination{
+    private int ntotal=1;
     private int rset;
+    int diff;
 
     /**
      * This is the constructor for this class
      * @param ntotal
      * @param rset
      */
-    Combination(int ntotal, int rset){
+    public Combination(int ntotal, int rset){
         this.ntotal=ntotal;
         this.rset=rset;
     }
@@ -22,18 +26,29 @@ public class Combination {
      * Calculates the combination
      * @return the double value of the combination
      */
-    public double calculate(){
-        return (factorial(this.ntotal))/((double)((factorial(this.rset))*(factorial(this.ntotal-this.rset))));
+    public BigInteger calculate(){
+        BigInteger nfact = factorial(ntotal); 
+        BigInteger rfact = factorial(rset);
+        BigInteger diff = factorial(ntotal-rset);
+        return nfact.divide(rfact.multiply(diff));
     }
-
-    private int factorial(int x){
-        int total=1;
-        if(x<0){
-            return -1;
+    /**
+     * Calculates a factorial
+     * @param n inputted value
+     * @return n! (must be a big integer)
+     */
+    private BigInteger factorial(long n) {
+        long x = n;
+        BigInteger fact = BigInteger.ONE;
+        if ((n == 0) || (n == 1)) {
+            return fact;
+        } else {
+            fact = BigInteger.valueOf(n);
+            while (n > 1) {
+                fact = fact.multiply(BigInteger.valueOf(n - 1));
+                n--;
+            }
         }
-        for(int i=x;i>0;i--){
-            total*=i;
-        }
-        return total;
+        return fact;
     }
 }
