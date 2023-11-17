@@ -52,7 +52,6 @@ public class Program {
                 System.out.println("exit: exits the program.\n");
                 System.out.println("\nKeywords:\nCombinatorics");
                 System.out.println("no order: combine [integer n] [integer r]");
-                System.out.println("poker chance: poker [true/false]  ;  true means flop, false means no flop");
             }
             else if(words.length ==3 && words[0].equals("combine")){
                 keyword = "combine";
@@ -148,16 +147,5 @@ public class Program {
         System.out.println(r);
         Combination c = new Combination(n,r);
         System.out.println("There are "+c.calculate()+ " different ways this event can happen.\n");
-    }
-    /**
-     * This method calculates the chance of certain outcome in poker
-     * EX: If your hand is an Ace of Spades [AS], and the flop has happened, 
-     * it will calculate the chance that one of the river cards will be an Ace or a Spade
-     * given each card from the flop as well
-     * If you have an Ace of Spades and the flop has not happened, it will calculate the overall chance
-     * that any of the five cards on the table will be an ace or a spade
-     */
-    private static void poker(){
-        
     }
 }
