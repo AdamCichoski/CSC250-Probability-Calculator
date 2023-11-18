@@ -26,11 +26,21 @@ public class Combination{
      * Calculates the combination
      * @return the double value of the combination
      */
-    public BigInteger calculate(){
+    public BigInteger combination(){
         BigInteger nfact = factorial(ntotal); 
         BigInteger rfact = factorial(rset);
         BigInteger diff = factorial(ntotal-rset);
         return nfact.divide(rfact.multiply(diff));
+    }
+    /**
+     * This method calculates the permutation of a given 
+     * total and the given items taken at a time
+     * @return the permutation
+     */
+    public BigInteger permutation(){
+        BigInteger nfact = factorial(ntotal); 
+        BigInteger rfact = factorial(rset);
+        return nfact.divide(rfact);
     }
     /**
      * Calculates a factorial
