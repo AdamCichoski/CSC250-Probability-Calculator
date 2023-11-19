@@ -1,4 +1,5 @@
 package calculator;
+import java.math.BigInteger;
 import java.util.Scanner;
 /**
  * This class starts the terminal program so the user can interface with it.
@@ -38,30 +39,30 @@ public class Program {
                 keyword = "exit";
             } else if (words.length == 1 && words[0].equals("?")) {
                 keyword = "?";
-                System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions. Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.");
-                System.out.println("When performing a combination functio, the percentage symbol is not required.\n");
-                System.out.println("Keywords:\nProbability:");
-                System.out.println("and: [A] and [B]");
-                System.out.println("or: [A] or [B]");
-                System.out.println("not: not [A]");
-                System.out.println("nor: [A] nor [B]");
-                System.out.println("notAnd: [A] notAnd [B]");
-                System.out.println("given: [A] given [B]");
+                System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions.");
+                System.out.println("Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.");
+                System.out.println("When performing a combination function, the percentage symbol is not required.\n");
+                System.out.println("Probability Keywords:");
+                System.out.println("and: [double a]% and [double b]%");
+                System.out.println("or: [double a]% or [double b]%");
+                System.out.println("not: not [double a]%");
+                System.out.println("nor: [double a]% nor [double b]%");
+                System.out.println("notAnd: [double a]% notAnd [double b]%");
+                System.out.println("given: [double a]% given [double b]%");
                 System.out.println("setx: sets and/or disables function to mutually exclusive");
                 System.out.println("?: lists all keywords.");
                 System.out.println("exit: exits the program.\n");
-                System.out.println("\nKeywords:\nCombinatorics");
-                System.out.println("no order: combine [integer n] [integer r]");
+                System.out.println("Combinatorics Keywords:");
+                System.out.println("no order: combine [integer n] [integer r]\n");
             }
             else if(words.length ==3 && words[0].equals("combine")){
                 keyword = "combine";
-                combine(words);
             }
             else if(words.length == 1 && words[0].equals("setx")){
                 keyword = "setx";
                 exclusive = (exclusive)? false : true;
                 String is = (exclusive)? "is exclusive": "is not exclusive";
-                System.out.printf("-->Function %s \n", is);
+                System.out.printf("-->Function %s \n\n", is);
             } 
             else if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].endsWith("%")) {
                 keyword = words[0];
@@ -77,7 +78,7 @@ public class Program {
                 event2 = Double.parseDouble(words[2]) / 100;
             } else {
                 keyword = "";
-                System.out.println("Error: Invalid input!!\n");
+                //System.out.println("Error: Invalid input!!\n");
             }
             
             if (event1 < 0 || event2 < 0) {
@@ -128,6 +129,20 @@ public class Program {
                             System.out.println("P(A | B): " + String.format("%.1f", p.given(event1, event2) * 100) + "%\n");
                         }
                         break;
+                    case "combine":
+                        if (combine(words) == null || (words[1].indexOf('.') != -1 || words[1].indexOf('%') != -1) || ((words[2].indexOf('.') != -1 || words[2].indexOf('%') != -1))) {
+                            System.out.println("Error: Input integer!!\n");
+                        } else {
+                            System.out.println("There are " + combine(words) + " different ways this event can happen.\n");
+                        }
+                        break;
+                    case "setx":
+                        break;
+                    case "?":
+                        break;
+                    default:
+                        System.out.println("Error: Invalid input!!\n");
+                        break;
                 }
             }
             System.out.println("Enter a probability equation (enter '?' for formatting):");
@@ -137,15 +152,17 @@ public class Program {
         input.close();
     }
     /**
-     * This method 
+     * This method prints the combination of two values.
      * @param combination
      */
-    private static void combine(String[] combination){
+    private static BigInteger combine(String[] combination){
+        if (!combination[1].matches("[0-9]+") || !combination[1].matches("[0-9]+")) {
+            return null;
+        }
+
         int n = Integer.parseInt(combination[1]);
         int r = Integer.parseInt(combination[2]);
-        System.out.println(n);
-        System.out.println(r);
         Combination c = new Combination(n,r);
-        System.out.println("There are "+c.calculate()+ " different ways this event can happen.\n");
+        return c.calculate();
     }
 }
