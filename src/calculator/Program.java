@@ -116,7 +116,7 @@ public class Program {
     /**
      * This method is used for math keyword inputs
      * 
-     * @param mathProblem
+     * @param mathProblem is the inputted command for a math function
      */
     private static void math(String[] mathProblem) {
         switch (keyword) {
@@ -154,7 +154,7 @@ public class Program {
                     System.out.println("Error: Keyword requires two events!!\n");
                 } else {
                     System.out
-                            .println("P(A or B): " + String.format("%.1f", p.or(event1, event2) * 100) + "%\n");
+                            .println("P(A or B): " + String.format("%.1f", p.or() * 100) + "%\n");
                 }
                 break;
             case "and":
@@ -176,7 +176,7 @@ public class Program {
                     System.out.println("Error: Keyword requires two events!!\n");
                 } else {
                     System.out.println(
-                            "P(~A or ~B): " + String.format("%.1f", p.nor(event1, event2) * 100) + "%\n");
+                            "P(~A or ~B): " + String.format("%.1f", p.nor() * 100) + "%\n");
                 }
                 break;
             case "andNot":
