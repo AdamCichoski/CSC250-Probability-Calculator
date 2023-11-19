@@ -15,8 +15,8 @@ public class Combination{
 
     /**
      * This is the constructor for this class
-     * @param ntotal
-     * @param rset
+     * @param ntotal is the variable n from typical combinatorics formulas
+     * @param rset is the variable r from typical combinatorics formulas
      */
     public Combination(int ntotal, int rset){
         this.ntotal=ntotal;
