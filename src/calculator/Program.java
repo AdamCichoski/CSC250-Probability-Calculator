@@ -78,7 +78,6 @@ public class Program {
                 event2 = Double.parseDouble(words[2]) / 100;
             } else {
                 keyword = "";
-                //System.out.println("Error: Invalid input!!\n");
             }
             
             if (event1 < 0 || event2 < 0) {
