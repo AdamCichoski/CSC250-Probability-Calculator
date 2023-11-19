@@ -12,17 +12,17 @@ public class Program {
         Scanner input = new Scanner(System.in);
 
         System.out.println("██████  ██████   ██████  ██████   █████  ██████  ██ ██      ██ ████████ ██    ██");
-		System.out.println("██   ██ ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██ ██      ██    ██     ██  ██ ");
-		System.out.println("██████  ██████  ██    ██ ██████  ███████ ██████  ██ ██      ██    ██      ████  ");
-		System.out.println("██      ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██ ██      ██    ██       ██   ");
-		System.out.println("██      ██   ██  ██████  ██████  ██   ██ ██████  ██ ███████ ██    ██       ██   ");
-		System.out.println("\n\n");
-		System.out.println(" ██████  █████  ██       ██████ ██    ██ ██       █████  ████████  ██████  ██████");
-		System.out.println("██      ██   ██ ██      ██      ██    ██ ██      ██   ██    ██    ██    ██ ██   ██");
-		System.out.println("██      ███████ ██      ██      ██    ██ ██      ███████    ██    ██    ██ ██████ ");
-		System.out.println("██      ██   ██ ██      ██      ██    ██ ██      ██   ██    ██    ██    ██ ██   ██");
-		System.out.println(" ██████ ██   ██ ███████  ██████  ██████  ███████ ██   ██    ██     ██████  ██   ██");
-		System.out.println("\n");
+	System.out.println("██   ██ ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██ ██      ██    ██     ██  ██ ");
+	System.out.println("██████  ██████  ██    ██ ██████  ███████ ██████  ██ ██      ██    ██      ████  ");
+	System.out.println("██      ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██ ██      ██    ██       ██   ");
+	System.out.println("██      ██   ██  ██████  ██████  ██   ██ ██████  ██ ███████ ██    ██       ██   ");
+	System.out.println("\n\n");
+	System.out.println(" ██████  █████  ██       ██████ ██    ██ ██       █████  ████████  ██████  ██████");
+	System.out.println("██      ██   ██ ██      ██      ██    ██ ██      ██   ██    ██    ██    ██ ██   ██");
+	System.out.println("██      ███████ ██      ██      ██    ██ ██      ███████    ██    ██    ██ ██████ ");
+	System.out.println("██      ██   ██ ██      ██      ██    ██ ██      ██   ██    ██    ██    ██ ██   ██");
+	System.out.println(" ██████ ██   ██ ███████  ██████  ██████  ███████ ██   ██    ██     ██████  ██   ██");
+	System.out.println("\n");
         
         System.out.println("Enter a probability equation (enter '?' for formatting):");
         while (!input.hasNext("exit")) {
