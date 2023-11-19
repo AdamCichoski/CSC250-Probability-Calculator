@@ -6,8 +6,7 @@ package calculator;
  */
 public class ProbabilityCalculator {
 	public static void main(String[] args) {
-		// Program program = new Program();
+		//all further operaions will be completed in the program
 		Program.start();
-		//All further operaions will be completed in the program
 	}
 }
