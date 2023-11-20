@@ -9,16 +9,10 @@ public class Probability {
 	private double event1=0;
 	private double event2=0;
 	private double event1and2=0;
-	private char or ='+', and ='*';
 	
 	public Probability(double event1, double event2) {
 		this.event1 = event1;
 		this.event2 = event2;
-	}
-	public Probability(double event1, double event2, double event1and2) {
-		this.event1 = event1;
-		this.event2 = event2;
-		this.event1and2 = event1and2;
 	}
 	/**
 	 * This method calculates a non-mutually exclusive or probability
@@ -26,8 +20,8 @@ public class Probability {
 	 * @param event2
 	 * @return P(event1 or event2)
 	 */
-	public double or(double event1, double event2) {
-		return event1+event2 - event1and2;
+	public double or() {
+		return event1+event2;
 	}
 	
 	/**
@@ -60,7 +54,7 @@ public class Probability {
 	 * This method checks a not on two events; P(~event1 or ~event2)
 	 * @return
 	 */
-	public double nor(double event1, double event2) {
+	public double nor() {
 		return 1-(event1+event2+event1and2);
 	}
 	/**
@@ -92,9 +86,10 @@ public class Probability {
 	 */
 	public void setEvent1and2(double event1and2){
 		if(event1and2<0){
-			throw new IllegalArgumentException("Invalid input for event!");
+			System.out.println("Invalid input for event!");
+		}else{
+			this.event1and2 = event1and2;
 		}
-		this.event1and2 = event1and2;
 	}
 	/**
 	 * Gets event1and2
