@@ -9,7 +9,11 @@ import java.util.Scanner;
  * @Author Adam Cichoski, Bennet Scott, Natalie Hildreth, Joseph Holly
  */
 public class Program {
+    /**
+     * This method starts the program.
+     */
     public static void start() {
+        boolean inputAsInteger = false;
         boolean exclusive = false;
         Scanner input = new Scanner(System.in);
 
@@ -41,6 +45,9 @@ public class Program {
                 keyword = "exit";
             } else if (words.length == 1 && words[0].equals("?")) {
                 keyword = "?";
+
+                System.out.println("\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions.");
+                System.out.println("Below are the difference keywords you can use to interface with this program. Make sure to end all values with a '%' symbol.");
                 System.out.println(
                         "\nWelcome to the Probability Calculator! This program is designed for calculating the results of probability questions.");
                 System.out.println(
@@ -58,6 +65,20 @@ public class Program {
                 System.out.println("exit: exits the program.\n");
                 System.out.println("Combinatorics Keywords:");
                 System.out.println("no order: combine [integer n] [integer r]\n");
+
+            }
+            else if(words.length ==3 && words[0].equals("combine")){
+                keyword = "combine";
+                inputAsInteger = true;
+            }
+            else if(words.length == 1 && words[0].equals("setx")){
+                keyword = "setx";
+                inputAsInteger = false;
+                exclusive = (exclusive)? false : true;
+                String is = (exclusive)? "is exclusive": "is not exclusive";
+                System.out.printf("-->Function %s \n\n", is);
+            } 
+            else if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].endsWith("%")) {
             } else if (words.length == 3 && words[0].equals("combine")) {
                 keyword = "combine";
             } else if (words.length == 1 && words[0].equals("setx")) {
@@ -67,19 +88,32 @@ public class Program {
                 System.out.printf("-->Function %s \n\n", is);
             } else if (words.length == 2 && words[0].matches("[a-zA-Z]+") && words[1].endsWith("%")) {
                 keyword = words[0];
+                inputAsInteger = false;
                 // convert strings of events into doubles
                 words[1] = words[1].substring(0, words[1].length() - 1);
                 event1 = Double.parseDouble(words[1]) / 100;
+            } else if (words.length == 3 && words[1].matches("[a-zA-Z]+")) {
             } else if (words.length == 3
                     && (words[0].endsWith("%") && words[1].matches("[a-zA-Z]+") && words[2].endsWith("%"))) {
+
                 keyword = words[1];
-                // convert strings of events into doubles
-                words[0] = words[0].substring(0, words[0].length() - 1);
-                event1 = Double.parseDouble(words[0]) / 100;
-                words[2] = words[2].substring(0, words[2].length() - 1);
-                event2 = Double.parseDouble(words[2]) / 100;
+                if (words[0].endsWith("%") && words[2].endsWith("%")) {
+                    inputAsInteger = false;
+                    words[0] = words[0].substring(0, words[0].length() - 1);
+                    event1 = Double.parseDouble(words[0]) / 100;
+
+                    words[2] = words[2].substring(0, words[2].length() - 1);
+                    event2 = Double.parseDouble(words[2]) / 100;
+                } else if (!words[0].endsWith("%") && !words[2].endsWith("%")) {
+                    inputAsInteger = true;
+                    event1 = 1 / Double.parseDouble(words[0]);
+                    event2 = 1 / Double.parseDouble(words[2]);
+                }
             } else {
                 keyword = "";
+
+                inputAsInteger = false;
+
             }
 
             if (event1 < 0 || event2 < 0) {
@@ -92,8 +126,12 @@ public class Program {
                         if (event1 == 0.0 || event2 == 0.0) {
                             System.out.println("Error: Keyword requires two events!!\n");
                         } else {
+
+                            System.out.println("P(A or B): " + (inputAsInteger ? p.or(event1, event2) * 100 : String.format("%.1f", p.or(event1, event2) * 100)) + "%\n");
+
                             System.out
                                     .println("P(A or B): " + String.format("%.1f", p.or() * 100) + "%\n");
+
                         }
                         break;
                     case "and":
@@ -103,8 +141,12 @@ public class Program {
                         } else if (event1 == 0.0 || event2 == 0.0) {
                             System.out.println("Error: Keyword requires two events!!\n");
                         } else {
+
+                            System.out.println("P(A and B): " + (inputAsInteger ? p.and(event1, event2) * 100 : String.format("%.1f", p.and(event1, event2) * 100)) + "%\n");
+
                             System.out.println(
                                     "P(A and B): " + String.format("%.1f", p.and(event1, event2) * 100) + "%\n");
+
                         }
                         break;
                     case "not":
@@ -114,6 +156,8 @@ public class Program {
                         if (event1 == 0.0 || event2 == 0.0) {
                             System.out.println("Error: Keyword requires two events!!\n");
                         } else {
+
+                            System.out.println("P(~A or ~B): " + (inputAsInteger ? p.nor(event1, event2) * 100 : String.format("%.1f", p.nor(event1, event2) * 100)) + "%\n");
                             System.out.println(
                                     "P(~A or ~B): " + String.format("%.1f", p.nor() * 100) + "%\n");
                         }
@@ -122,14 +166,26 @@ public class Program {
                         if (event1 == 0.0 || event2 == 0.0) {
                             System.out.println("Error: Keyword requires two events!!\n");
                         } else {
+                            System.out.println("P(~A and ~B): " + (inputAsInteger ? p.andNot(event1, event2) * 100 : String.format("%.1f", p.andNot(event1, event2) * 100)) + "%\n");
                             System.out.println(
                                     "P(~A and ~B): " + String.format("%.1f", p.andNot(event1, event2) * 100) + "%\n");
+
                         }
                         break;
                     case "given":
                         if (event1 == 0.0 || event2 == 0.0) {
                             System.out.println("Error: Keyword requires two events!!\n");
                         } else {
+                            System.out.println("P(A | B): " + (inputAsInteger ? p.given(event1, event2) * 100 : String.format("%.1f", p.given(event1, event2) * 100)) + "%\n");
+                        }
+                        break;
+                    case "combine":
+                        if (combine(words) == null || (words[1].indexOf('.') != -1 || words[1].indexOf('%') != -1) || ((words[2].indexOf('.') != -1 || words[2].indexOf('%') != -1))) {
+                            System.out.println("Error: Input integer!!\n");
+                        } else {
+                            System.out.println("There are " + combine(words) + " different ways this event can happen.\n");
+                        }
+                        break;
                             System.out.println(
                                     "P(A | B): " + String.format("%.1f", p.given(event1, event2) * 100) + "%\n");
                         }
@@ -143,6 +199,7 @@ public class Program {
                                     "There are " + combine(words) + " different ways this event can happen.\n");
                         }
                         break;
+
                     case "setx":
                         break;
                     case "?":
@@ -161,16 +218,24 @@ public class Program {
 
     /**
      * This method prints the combination of two values.
+     * @param combination
+     */
+    private static BigInteger combine(String[] combination){
+
      * 
      * @param combination
      */
     private static BigInteger combine(String[] combination) {
+
         if (!combination[1].matches("[0-9]+") || !combination[1].matches("[0-9]+")) {
             return null;
         }
 
         int n = Integer.parseInt(combination[1]);
         int r = Integer.parseInt(combination[2]);
+
+        Combination c = new Combination(n,r);
+        return c.calculate();
         Combination c = new Combination(n, r);
         return c.combination();
     }
